@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+supabase
+apscheduler
+pydantic
+python-dotenv

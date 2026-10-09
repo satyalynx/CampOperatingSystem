@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Layers, ShieldCheck, User, Lock, Sparkles, ArrowRight } from 'lucide-react';
+import { Layers, User, Lock, Sparkles, ArrowRight, GraduationCap, Shield, Landmark } from 'lucide-react';
 import { api } from '../api';
+import CampusBackground from '../components/CampusBackground';
 
 export default function LoginModal({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
@@ -36,53 +37,55 @@ export default function LoginModal({ onLoginSuccess }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 space-y-6 shadow-2xl relative">
-        {/* Brand */}
-        <div className="text-center space-y-2">
-          <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-xl shadow-indigo-500/20">
-            <Layers className="w-7 h-7 text-white" />
+    <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-4 relative">
+      <CampusBackground />
+      <div className="max-w-md w-full sb-card p-7 space-y-5 relative z-10 shadow-soft-md">
+        
+        {/* Brand Header */}
+        <div className="text-center space-y-1.5">
+          <div className="w-12 h-12 mx-auto rounded-xl bg-slate-900 flex items-center justify-center shadow-2xs">
+            <Layers className="w-6 h-6 text-white" />
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight">CampOS</h1>
-          <p className="text-xs text-slate-400">
-            Campus Operating System • Unified Operations & SLA Escalation
+          <h1 className="text-xl font-bold text-slate-900 tracking-tight">CampOS</h1>
+          <p className="text-xs text-slate-500 font-medium">
+            Campus Operating System • Zero-Breach Complaint Engine
           </p>
         </div>
 
         {error && (
-          <div className="bg-rose-950/60 border border-rose-800 text-rose-300 px-4 py-2.5 rounded-xl text-xs font-semibold">
+          <div className="bg-white border border-slate-200 border-l-4 border-l-red-500 text-slate-800 px-3.5 py-2.5 rounded-lg text-xs font-medium">
             {error}
           </div>
         )}
 
-        {/* Standard Email/Password Form */}
-        <form onSubmit={handleManualLogin} className="space-y-4">
+        {/* Standard Form */}
+        <form onSubmit={handleManualLogin} className="space-y-3.5">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">Campus Email</label>
+            <label className="block text-xs font-semibold text-slate-700 mb-1">Campus Email</label>
             <div className="relative">
-              <User className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
+              <User className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
               <input
                 type="email"
                 required
                 placeholder="name@campos.edu"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white border border-slate-200 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-400 shadow-2xs"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">Password</label>
+            <label className="block text-xs font-semibold text-slate-700 mb-1">Password</label>
             <div className="relative">
-              <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
+              <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
               <input
                 type="password"
                 required
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-white border border-slate-200 rounded-lg pl-9 pr-3 py-2 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-400 shadow-2xs"
               />
             </div>
           </div>
@@ -90,34 +93,38 @@ export default function LoginModal({ onLoginSuccess }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-lg shadow-indigo-600/30"
+            className="w-full py-2 bg-[#FF5733] hover:bg-[#E0482B] text-white rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-2xs active:scale-95"
           >
             <span>{loading ? 'Authenticating...' : 'Sign In'}</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </form>
 
-        {/* Evaluator Quick Access Personas */}
-        <div className="pt-4 border-t border-slate-800 space-y-3">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400">
-            <Sparkles className="w-3.5 h-3.5" />
+        {/* CampusAlly Instant 1-Click Evaluator Personas */}
+        <div className="pt-3.5 border-t border-slate-100 space-y-2.5">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800">
+            <Sparkles className="w-3.5 h-3.5 text-[#FF5733]" />
             <span>One-Click Evaluator Personas (Live JWT)</span>
           </div>
-          <p className="text-[11px] text-slate-400 leading-relaxed">
-            Select any pre-configured test persona below to instantly obtain verified JWT tokens:
+          <p className="text-[11px] text-slate-500 leading-relaxed">
+            Click any test role below to instantly authenticate into their scoped workspace:
           </p>
 
           <div className="space-y-2">
             <button
               type="button"
               onClick={() => handleQuickPersona('student', 'u-std-1')}
-              className="w-full bg-slate-800/80 hover:bg-slate-750 border border-slate-700/80 p-2.5 rounded-xl text-left flex items-center justify-between text-xs transition"
+              className="w-full sb-card-interactive p-3 text-left flex items-center justify-between text-xs"
             >
-              <div>
-                <div className="font-bold text-white">Rahul Verma</div>
-                <div className="text-[10px] text-slate-400">Student • Girls Block A (Rm 204)</div>
+              <div className="flex items-center gap-2.5">
+                <GraduationCap className="w-4 h-4 text-slate-400" />
+                <div>
+                  <div className="font-semibold text-slate-900">Rahul Verma</div>
+                  <div className="text-[10px] text-slate-500">Student • Girls Block A (Rm 204)</div>
+                </div>
               </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold">
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[10px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                 Student
               </span>
             </button>
@@ -125,13 +132,17 @@ export default function LoginModal({ onLoginSuccess }) {
             <button
               type="button"
               onClick={() => handleQuickPersona('warden', 'u-stf-1')}
-              className="w-full bg-slate-800/80 hover:bg-slate-750 border border-slate-700/80 p-2.5 rounded-xl text-left flex items-center justify-between text-xs transition"
+              className="w-full sb-card-interactive p-3 text-left flex items-center justify-between text-xs"
             >
-              <div>
-                <div className="font-bold text-white">Warden Sharma</div>
-                <div className="text-[10px] text-slate-400">Warden • Scoped to Girls Block A</div>
+              <div className="flex items-center gap-2.5">
+                <Shield className="w-4 h-4 text-slate-400" />
+                <div>
+                  <div className="font-semibold text-slate-900">Warden Sharma</div>
+                  <div className="text-[10px] text-slate-500">Warden • Scoped to Girls Block A</div>
+                </div>
               </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-md bg-indigo-950 text-indigo-400 border border-indigo-800 font-bold">
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[10px] font-medium text-blue-700 bg-blue-50 border border-blue-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
                 Warden
               </span>
             </button>
@@ -139,21 +150,25 @@ export default function LoginModal({ onLoginSuccess }) {
             <button
               type="button"
               onClick={() => handleQuickPersona('admin', 'u-stf-3')}
-              className="w-full bg-slate-800/80 hover:bg-slate-750 border border-slate-700/80 p-2.5 rounded-xl text-left flex items-center justify-between text-xs transition"
+              className="w-full sb-card-interactive p-3 text-left flex items-center justify-between text-xs"
             >
-              <div>
-                <div className="font-bold text-white">Dr. A. K. Satpathy</div>
-                <div className="text-[10px] text-slate-400">Chief Admin / Dean of Student Affairs</div>
+              <div className="flex items-center gap-2.5">
+                <Landmark className="w-4 h-4 text-slate-400" />
+                <div>
+                  <div className="font-semibold text-slate-900">Dr. A. K. Satpathy</div>
+                  <div className="text-[10px] text-slate-500">Chief Admin / Dean of Operations</div>
+                </div>
               </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-md bg-purple-950 text-purple-400 border border-purple-800 font-bold">
-                Chief Admin
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[10px] font-medium text-purple-700 bg-purple-50 border border-purple-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
+                Dean / Admin
               </span>
             </button>
           </div>
         </div>
 
-        <p className="text-center text-[10px] text-slate-500">
-          CampOS v2.0 • BPUT Hackathon PS07 Solution Architecture
+        <p className="text-center text-[10px] text-slate-400">
+          CampOS v2.0 • BPUT Hackathon PS07 Solution Prototype
         </p>
       </div>
     </div>

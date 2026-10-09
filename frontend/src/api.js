@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL || 'https://campoperatingsystem-1.onrender.com';
+const BASE_URL = (import.meta.env.VITE_API_URL || 'https://campoperatingsystem-1.onrender.com').replace(/\/$/, '');
 
 function getAuthHeader() {
   const token = localStorage.getItem('campos_token');
